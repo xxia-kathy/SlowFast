@@ -39,7 +39,7 @@ SOLVER:
   BASE_LR: 0.1 # 1 machine
   BASE_LR_SCALE_NUM_SHARDS: True
   LR_POLICY: cosine
-  MAX_EPOCH: 300
+  MAX_EPOCH: 600
   WEIGHT_DECAY: 5e-5
   WARMUP_EPOCHS: 35.0
   WARMUP_START_LR: 0.01
@@ -56,3 +56,26 @@ DATA_LOADER:
 NUM_GPUS: 8
 RNG_SEED: 0
 OUTPUT_DIR: .
+TENSORBOARD:
+  ENABLE: True
+  LOG_DIR:
+  CLASS_NAMES_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/class_names.json
+  MODEL_VIS:
+    ENABLE: True
+    MODEL_WEIGHTS: True
+    ACTIVATIONS: True
+    INPUT_VIDEO: True
+    LAYER_LIST: []
+    TOPK_PREDS: 1
+    GRAD_CAM:
+      ENABLE: True
+      LAYER_LIST: ["s5/pathway0_res6"]
+  LOG_DIR: # Leave empty to use cfg.OUTPUT_DIR/runs-{cfg.TRAIN.DATASET} as path.
+  CONFUSION_MATRIX:
+    ENABLE: True
+    SUBSET_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/labels.txt
+  HISTOGRAM:
+    ENABLE: True
+    TOPK: 2
+    SUBSET_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/labels.txt
+                                                   
