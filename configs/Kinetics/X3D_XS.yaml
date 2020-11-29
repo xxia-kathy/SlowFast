@@ -48,7 +48,7 @@ MODEL:
   NUM_CLASSES: 400
   ARCH: x3d
   MODEL_NAME: X3D
-  LOSS_FUNC: cross_entropy
+  LOSS_FUNC: sim_loss
   DROPOUT_RATE: 0.5
 DATA_LOADER:
   NUM_WORKERS: 8
@@ -59,7 +59,7 @@ OUTPUT_DIR: .
 TENSORBOARD:
   ENABLE: True
   LOG_DIR:
-  CLASS_NAMES_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/class_names.json
+  CLASS_NAMES_PATH: /home/kathy/mnt/data/processed_data/cropped_video_512/videos/class_names.json
   MODEL_VIS:
     ENABLE: True
     MODEL_WEIGHTS: True
@@ -73,9 +73,9 @@ TENSORBOARD:
   LOG_DIR: # Leave empty to use cfg.OUTPUT_DIR/runs-{cfg.TRAIN.DATASET} as path.
   CONFUSION_MATRIX:
     ENABLE: True
-    SUBSET_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/labels.txt
+    SUBSET_PATH: /home/kathy/mnt/data/processed_data/cropped_video_512/videos/labels.txt
   HISTOGRAM:
     ENABLE: True
     TOPK: 2
-    SUBSET_PATH: /home/kathy/mnt/data/video_264yuv/video_lists/labels.txt
+    SUBSET_PATH: /home/kathy/mnt/data/processed_data/cropped_video_512/videos/labels.txt
                                                    
