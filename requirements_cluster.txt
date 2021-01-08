@@ -1,0 +1,332 @@
+absl-py==0.10.0
+addict==2.3.0
+aiohttp==3.6.2
+alabaster @ file:///home/kathy/.cache/pypoetry/artifacts/1a/65/45/a707dd221fbfb8cb6fe29d7ff06dd9ddf6c4faa237cfba438aed0399da/alabaster-0.7.12-py2.py3-none-any.whl
+apache-beam==2.24.0
+appdirs==1.4.4
+apptools==4.5.0
+argh @ file:///home/kathy/.cache/pypoetry/artifacts/93/03/59/2901e9cc44119be0a7b0cdaa46b24482f9d4cc21084588fea8e3fadd10/argh-0.26.2-py2.py3-none-any.whl
+argon2-cffi==20.1.0
+ase==3.20.1
+aspy.yaml @ file:///home/kathy/.cache/pypoetry/artifacts/2f/ae/bf/bf7d3abc0aac209cd7ee9b5202f12689169a214c27b6f93b2345cc86ca/aspy.yaml-1.3.0-py2.py3-none-any.whl
+astor==0.8.1
+astroid @ file:///home/kathy/.cache/pypoetry/artifacts/a9/08/b4/91b732e0ec951145bee7875bf8f2962323b33e8320e96926f645d8e605/astroid-2.4.2-py3-none-any.whl
+astunparse==1.6.3
+async-generator==1.10
+async-timeout==3.0.1
+attrs==20.2.0
+autopep8==1.5.4
+av==6.2.0
+avro-python3==1.9.2.1
+Babel @ file:///home/kathy/.cache/pypoetry/artifacts/6a/20/0b/58a1d7c4dce9d90896231d47781e9317e1208a0214a97bf1f0cf185cda/Babel-2.8.0-py2.py3-none-any.whl
+backcall==0.2.0
+black @ file:///home/kathy/.cache/pypoetry/artifacts/02/80/3c/5703204292042ccdcb6525405b0cf8aca1e098ccf0282e1f1904540c94/black-19.10b0-py36-none-any.whl
+bleach==1.5.0
+blessings @ file:///home/kathy/.cache/pypoetry/artifacts/af/b8/ff/af2cc48958be72e562c242dfb2e9e117f62981a4a534c59ee19313d571/blessings-1.7-py3-none-any.whl
+bokeh==1.4.0
+CacheControl==0.12.6
+cachetools==4.1.1
+cachy==0.3.0
+certifi==2020.6.20
+cffi==1.14.3
+cfgv @ file:///home/kathy/.cache/pypoetry/artifacts/4b/2c/aa/594e604bc8d762dc3ef347a50650b7a4500b939af30e55f3e8f7af4ca5/cfgv-3.2.0-py2.py3-none-any.whl
+chardet==3.0.4
+cleo==0.8.1
+click==7.1.2
+clikit==0.6.2
+cloudpickle==1.6.0
+cmake==3.18.2.post1
+codecov @ file:///home/kathy/.cache/pypoetry/artifacts/0a/0b/6b/d623a0d7199e71009d6d6a5bdb0f6a3f232884a75078cbca154700ac77/codecov-2.1.10-py2.py3-none-any.whl
+conda==4.3.16
+configobj==5.0.6
+configparser==5.0.1
+coverage @ file:///home/kathy/.cache/pypoetry/artifacts/74/55/fb/0bf542610bb2d78ae0ba93f2effec7becd9f643a298869f0d8c51273e6/coverage-5.3-cp36-cp36m-manylinux1_x86_64.whl
+crashtest==0.3.1
+crcmod==1.7
+cryptography==3.1.1
+cycler==0.10.0
+Cython==0.29.21
+dataclasses==0.8
+decorator==4.4.2
+-e git+git@github.com:xxia-kathy/DeepExplain.git@446b348815bdac1f33bf9d3738d3326210de6b81#egg=deepexplain
+defusedxml==0.6.0
+detectron2 @ git+https://github.com/facebookresearch/detectron2.git@cd60faf1427f95d357ba30365a415d0309a8618f
+dill==0.3.1.1
+distlib==0.3.1
+distro==1.5.0
+dm-tree==0.1.5
+docker-pycreds==0.4.0
+docopt==0.6.2
+docutils @ file:///home/kathy/.cache/pypoetry/artifacts/c2/b6/42/a80904423372c8455ec181804d9a976bde31090916c2e05194228691b0/docutils-0.16-py2.py3-none-any.whl
+efficientnet==1.1.1
+entrypoints==0.3
+enum34==1.1.10
+envisage==4.9.2
+fastavro==0.23.6
+filelock==3.0.12
+Fileseq==1.11.2
+flake8 @ file:///home/kathy/.cache/pypoetry/artifacts/c2/71/b8/4eaa2939d5ca75a8b68e37a40f463e7806515c56a5a427ab543ccb7414/flake8-3.8.4-py2.py3-none-any.whl
+Flask==1.1.2
+flatbuffers==1.12
+future==0.18.2
+fvcore==0.1.2
+gast==0.3.3
+gcloud==0.18.3
+gdown @ file:///home/kathy/.cache/pypoetry/artifacts/96/87/fc/b189e8e97e7affee531dc92bcec6eaa618e9960633d5b256fa723d3f17/gdown-3.12.2.tar.gz
+gin-config==0.3.0
+gitdb==4.0.5
+GitPython==3.1.9
+google-api-core==1.22.2
+google-api-python-client==1.12.8
+google-auth @ file:///home/kathy/.cache/pypoetry/artifacts/6d/a5/4a/705820e9ce30ff6578108b7a222294ad01d014009db5a0917564866514/google_auth-1.22.1-py2.py3-none-any.whl
+google-auth-httplib2==0.0.4
+google-auth-oauthlib==0.4.1
+google-cloud-bigquery==2.4.0
+google-cloud-core==1.4.1
+google-cloud-storage==1.31.2
+google-crc32c==1.0.0
+google-pasta==0.2.0
+google-resumable-media==1.0.0
+googleapis-common-protos==1.52.0
+googledrivedownloader==0.4
+gpustat==0.6.0
+gql==0.2.0
+graphql-core==1.1
+grpcio==1.32.0
+h5py==2.10.0
+hdfs==2.5.8
+html5lib==0.9999999
+httplib2==0.17.4
+hydra-core==0.11.3
+identify @ file:///home/kathy/.cache/pypoetry/artifacts/e9/6c/bd/8e4d5fc8d7b4f6ba3610997fd783ea848d937eff7674c0c23736303586/identify-1.5.6-py2.py3-none-any.whl
+idna==2.10
+idna-ssl==1.1.0
+imageio==2.9.0
+imageio-ffmpeg==0.4.2
+imagesize @ file:///home/kathy/.cache/pypoetry/artifacts/b5/02/33/81fa2642fb43e433dc7cf03432448b7ae56e53268e57ad7b56a30e4512/imagesize-1.2.0-py2.py3-none-any.whl
+importlib-metadata @ file:///home/kathy/.cache/pypoetry/artifacts/2c/fb/b7/ab1532166dc01220934b0c74fc87746da543089f964008f5ed0d3f8362/importlib_metadata-2.0.0-py2.py3-none-any.whl
+importlib-resources==3.0.0
+ipykernel==5.3.4
+ipython==7.16.1
+ipython-genutils==0.2.0
+ipywidgets @ file:///home/kathy/.cache/pypoetry/artifacts/8b/20/ad/a065ea5e7f9ed83b352c15dffb2b144c4abb3554a10425046ddb369f87/ipywidgets-7.5.1-py2.py3-none-any.whl
+isodate==0.6.0
+isort @ file:///home/kathy/.cache/pypoetry/artifacts/ae/12/84/a65f51aeabf3f1a0d20b5de87ed58531fd77b299c5dcd1773d687f6472/isort-5.6.4-py3-none-any.whl
+itsdangerous==1.1.0
+jedi==0.17.2
+jeepney==0.4.3
+Jinja2==2.11.2
+joblib @ file:///home/kathy/.cache/pypoetry/artifacts/4c/83/64/4948fd41478b220b93c7f5911cc5180ddd3fe8308323bb69593132bd6e/joblib-0.17.0-py3-none-any.whl
+json5==0.9.5
+jsonpatch==1.26
+jsonpointer==2.0
+jsonschema==3.2.0
+jupyter-client==6.1.7
+jupyter-core==4.6.3
+jupyterlab @ file:///home/kathy/.cache/pypoetry/artifacts/88/56/79/e42d83dd9b4fa5095f8ca57e8d36f6eb10e60b8bf4a8ee4caa26afdb39/jupyterlab-1.2.18-py2.py3-none-any.whl
+jupyterlab-pygments==0.1.2
+jupyterlab-server==1.2.0
+kaggle==1.5.9
+Keras==2.3.1
+Keras-Applications==1.0.8
+keras-efficientnets==0.1.7
+Keras-Preprocessing==1.1.2
+keyring==21.4.0
+kiwisolver==1.2.0
+kornia==0.4.1
+lazy-object-proxy @ file:///home/kathy/.cache/pypoetry/artifacts/c3/c6/6b/5444472000fd40e2535058bf77ad084ec630f0722796fc58df5b5bc4f2/lazy_object_proxy-1.4.3-cp36-cp36m-manylinux1_x86_64.whl
+livereload==2.6.3
+llvmlite==0.32.1
+lockfile==0.12.2
+Markdown @ file:///home/kathy/.cache/pypoetry/artifacts/a9/ad/39/28a43631d8d5bebeb8b1a16e3cbace40850a4eaa9f88d77920301e6de7/Markdown-3.3.1-py3-none-any.whl
+MarkupSafe==1.1.1
+matplotlib==3.3.2
+mayavi==4.7.2
+mccabe @ file:///home/kathy/.cache/pypoetry/artifacts/1e/5b/32/e78ec93754c8a551ba3672cd8324dfb4f298d5b0d2c111f7633a018b81/mccabe-0.6.1-py2.py3-none-any.whl
+meshio @ file:///home/kathy/.cache/pypoetry/artifacts/91/bb/28/fce0322a1f215bccc314171d9dd36761111ece6ad243be8f06822472b6/meshio-4.3.0-py3-none-any.whl
+mistune==0.8.4
+# Editable install with no version control (ml3d==0.0.0)
+-e /home/kathy/virtualenv/lib/python3.6/site-packages/ml3d-0.0.0-py3.6.egg
+mock==2.0.0
+moviepy==1.0.3
+msgpack==1.0.0
+multidict==4.7.6
+-e git+git@bitbucket.org:disneyresearch/iav-compression-utils.git@dfc649c15e355705d984025015f5fe75c558d5f2#egg=my_template
+mypy @ file:///home/kathy/.cache/pypoetry/artifacts/c6/e5/99/1f10256402139a8cb801153331eea0d6f7b9ca721e30073cc9b90cb155/mypy-0.770-cp36-cp36m-manylinux1_x86_64.whl
+mypy-extensions @ file:///home/kathy/.cache/pypoetry/artifacts/95/d1/f7/27a186204e28c343803d003d5d6e3060731a2dabcfaa566a81411fc5e8/mypy_extensions-0.4.3-py2.py3-none-any.whl
+nbclient==0.5.0
+nbconvert==6.0.7
+nbformat==5.0.7
+nest-asyncio==1.4.1
+networkx==2.5
+nodeenv @ file:///home/kathy/.cache/pypoetry/artifacts/30/e7/5b/3d2bd1a4e4237f34e12074f6b1e9a0575f2acb510ed57da9f0e4fe821e/nodeenv-1.5.0-py2.py3-none-any.whl
+nodejs==0.1.1
+notebook==6.1.4
+npm==0.1.1
+numba==0.49.1
+numpy==1.19.5
+nvidia-ml-py3==7.352.0
+oauth2client==3.0.0
+oauthlib==3.1.0
+omegaconf==1.4.1
+open3d==0.11.0
+opencv-python==4.4.0.44
+opencv-python-headless==4.4.0.46
+opt-einsum==3.3.0
+optional-django==0.1.0
+packaging==20.4
+pandas @ file:///home/kathy/.cache/pypoetry/artifacts/cc/2f/36/c68b56c9e76bece3c3dd2dc23b4d514159c28c36e618890c545c230367/pandas-1.1.3-cp36-cp36m-manylinux1_x86_64.whl
+pandocfilters==1.4.2
+panel @ file:///home/kathy/.cache/pypoetry/artifacts/1b/08/bb/8d69955a39f3fcf7aad5ca26f6a06e035d740aa1496a35e4119b266841/panel-0.8.3-py2.py3-none-any.whl
+param @ file:///home/kathy/.cache/pypoetry/artifacts/a2/18/99/c2f4eca25890b9a68aa1456b61fa91e744001b4b3aa2ae7b7ab1170ef0/param-1.9.3-py2.py3-none-any.whl
+parso==0.7.1
+pastel==0.2.1
+pathspec @ file:///home/kathy/.cache/pypoetry/artifacts/f9/83/fc/a9f1b04c0b443e4bfdb9906bc2f4640e4d843354cedcec4d2119644223/pathspec-0.8.0-py2.py3-none-any.whl
+pathtools==0.1.2
+pbr==5.5.0
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow==7.2.0
+pkg-resources==0.0.0
+pkginfo==1.5.0.1
+plyfile==0.7.2
+poetry==1.1.3
+poetry-core==1.0.0
+port-for==0.3.1
+portalocker==2.0.0
+pre-commit @ file:///home/kathy/.cache/pypoetry/artifacts/c9/44/f0/b0a582b4a61875976566dd04380e60fb3ce475f26bcf20f5acc93086e3/pre_commit-1.21.0-py2.py3-none-any.whl
+proglog==0.1.9
+prometheus-client==0.8.0
+promise==2.3
+prompt-toolkit @ file:///home/kathy/.cache/pypoetry/artifacts/ae/a6/cc/1582400b86e1523a155f514a031073ba99def35191a5bb822ad8abc17b/prompt_toolkit-3.0.8-py3-none-any.whl
+proto-plus==1.11.0
+protobuf==3.13.0
+psutil==5.7.2
+ptyprocess==0.6.0
+py-cpuinfo==7.0.0
+pyarrow==0.17.1
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycocotools==2.0.2
+pycodestyle @ file:///home/kathy/.cache/pypoetry/artifacts/1b/d2/0f/2e622e4b9dab3b7533fb715a432f521571f7292df5d3a100d6114f9074/pycodestyle-2.6.0-py2.py3-none-any.whl
+pycosat==0.6.3
+pycparser==2.20
+pyct @ file:///home/kathy/.cache/pypoetry/artifacts/3e/1d/0f/ffda77a2c0bc620aaee420865db9c25bc21a0ab0150ac9676673a7df4b/pyct-0.4.8-py2.py3-none-any.whl
+pydot==1.4.1
+pyface==7.0.1
+pyflakes @ file:///home/kathy/.cache/pypoetry/artifacts/aa/0b/95/06dd2cacb210ed54d8db161837ce9a39a6c74963b0a8f60095ca1107d1/pyflakes-2.2.0-py2.py3-none-any.whl
+Pygments==2.7.1
+pylev==1.3.0
+pylint @ file:///home/kathy/.cache/pypoetry/artifacts/00/9c/0f/6a5aea7957b5e4ef572a2bee91d8213d182b21f6ce50b8fe88e7d831f9/pylint-2.6.0-py3-none-any.whl
+pymongo==3.11.0
+pyparsing==2.4.7
+PyQt5==5.15.1
+PyQt5-sip==12.8.1
+pyrsistent==0.17.3
+python-dateutil==2.8.1
+python-slugify==4.0.1
+pytorch-metric-learning @ file:///home/kathy/.cache/pypoetry/artifacts/54/28/a5/fea57951380eccfb35a653c6a80dbc31f02b9be29b332e7f61f1b05276/pytorch_metric_learning-0.9.94.dev1-py3-none-any.whl
+pytz==2020.1
+pyvista==0.23.1
+pyviz-comms @ file:///home/kathy/.cache/pypoetry/artifacts/42/78/09/5c680bc1b6fa2377bd7df21f7fb4bc53ac3f9a069304055732b9810759/pyviz_comms-0.7.6-py2.py3-none-any.whl
+PyWavelets==1.1.1
+PyYAML==5.3.1
+pyzmq==19.0.2
+ratatorch==1.0.166
+rdflib==5.0.0
+regex @ file:///home/kathy/.cache/pypoetry/artifacts/f3/12/0d/e077cee89cfd44c5891b1c483f091b6c83d92c3a08eddc865b15706eea/regex-2020.10.11-cp36-cp36m-manylinux2010_x86_64.whl
+requests==2.24.0
+requests-oauthlib==1.3.0
+requests-toolbelt==0.9.1
+rope @ file:///home/kathy/.cache/pypoetry/artifacts/3e/aa/a2/6c6f11b387ade1847ec15f5b0da4be3136287f0f6b8f8c828fb3761bb6/rope-0.14.0-py3-none-any.whl
+rsa==4.6
+ruamel.yaml==0.16.12
+ruamel.yaml.clib==0.2.2
+scikit-build==0.11.1
+scikit-image==0.16.2
+scikit-learn==0.23.2
+scipy==1.4.1
+scooby @ file:///home/kathy/.cache/pypoetry/artifacts/e4/cc/24/7aab93e6a6b933d0c969e164875dddf41529954af76eb7f8db245fa2fc/scooby-0.5.6-py3-none-any.whl
+SecretStorage==3.1.2
+Send2Trash==1.5.0
+sentencepiece==0.1.94
+sentry-sdk==0.19.0
+seqeval==1.2.2
+shellingham==1.3.2
+shortuuid==1.0.1
+simplejson==3.17.2
+six==1.15.0
+sklearn==0.0
+slim==0.1
+-e git+https://github.com/xxia-kathy/SlowFast.git@d831774481c4b0cdb45b8c149c1f9d5067484f98#egg=slowfast
+slugify==0.0.1
+smmap==3.0.4
+snakeviz @ file:///home/kathy/.cache/pypoetry/artifacts/d6/fa/16/622ae5f3c883410804d60d7c24369ce191d78912ecd9a5ae4b0a7299b4/snakeviz-2.1.0-py2.py3-none-any.whl
+snowballstemmer @ file:///home/kathy/.cache/pypoetry/artifacts/e2/cc/49/dbe716eb9a9b88381bdb7b22d8a332f2e84c5e7a82a6eb05305219855e/snowballstemmer-2.0.0-py2.py3-none-any.whl
+Sphinx @ file:///home/kathy/.cache/pypoetry/artifacts/75/4e/39/f986a6a5e79e4d6ffd867e40f3032ec62e78aa269dee19fd23235bf77f/Sphinx-2.4.4-py3-none-any.whl
+sphinx-autobuild==0.7.1
+sphinx-rtd-theme @ file:///home/kathy/.cache/pypoetry/artifacts/e4/f3/03/892034469312f3d114e6c9cbb81601e8894beea80bddb421c085de0515/sphinx_rtd_theme-0.4.3-py2.py3-none-any.whl
+sphinxcontrib-applehelp @ file:///home/kathy/.cache/pypoetry/artifacts/90/20/86/b86215ccae8edb414ee9360a2c165acb200f5c71641631451d6763b51d/sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl
+sphinxcontrib-devhelp @ file:///home/kathy/.cache/pypoetry/artifacts/1a/80/71/fca07650b4ee32df4c02d32453886dc7cb3ebee885148c98eeea4ea315/sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl
+sphinxcontrib-htmlhelp @ file:///home/kathy/.cache/pypoetry/artifacts/c4/7b/a7/f52f7bb288b52518225efa0834fa946348e891fbd8cecf7c0d5fad4e51/sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl
+sphinxcontrib-jsmath @ file:///home/kathy/.cache/pypoetry/artifacts/e3/4c/12/1315764a0c39e36d618d37e8eab3ef022d6e2d321a0da4772702c5fe0e/sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl
+sphinxcontrib-qthelp @ file:///home/kathy/.cache/pypoetry/artifacts/66/78/8f/35e22cf367b4bb976348223ce5f84f17ad61d5b9b0bb9806d0e2f06f94/sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl
+sphinxcontrib-serializinghtml @ file:///home/kathy/.cache/pypoetry/artifacts/cf/60/55/0833cbea8d9363612efe88402c971e52388c569857a9bff4b33125cf09/sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl
+subprocess32==3.5.4
+tabulate==0.8.7
+tensorboard==2.4.0
+tensorboard-plugin-wit==1.7.0
+tensorboardX==2.1
+tensorflow-addons==0.11.2
+tensorflow-datasets==4.1.0
+tensorflow-estimator==2.4.0
+tensorflow-gpu==2.4.0
+tensorflow-hub==0.10.0
+tensorflow-metadata==0.25.0
+tensorflow-model-optimization==0.5.0
+termcolor==1.1.0
+terminado==0.9.1
+testpath==0.4.4
+text-unidecode==1.3
+tf-nightly-gpu==2.5.0.dev20201108
+tf-slim==1.1.0
+threadpoolctl==2.1.0
+tifffile==2020.9.3
+-e git+https://github.com/xxia-kathy/pytorch-image-models.git@3fdee973d3738691b2139a2a1e3fc9518f79d8b5#egg=timm
+toml @ file:///home/kathy/.cache/pypoetry/artifacts/42/57/7a/a0567b0846474d9615595a0f6878e493c8083b4fcf163f2ed0896f7461/toml-0.10.1-py2.py3-none-any.whl
+tomlkit==0.7.0
+torch==1.6.0+cu101
+torch-cluster==1.5.7
+torch-geometric==1.6.1
+torch-points-kernels==0.6.8
+torch-points3d==1.1.1
+torch-scatter==2.0.5
+torch-sparse==0.6.7
+torchfile==0.1.0
+torchnet==0.0.4
+torchvision==0.7.0+cu101
+tornado==6.0.4
+tqdm @ file:///home/kathy/.cache/pypoetry/artifacts/83/1e/33/20b5214ad4013352433b2d19773c6f4df19290d33050ba2349fd7da266/tqdm-4.50.2-py2.py3-none-any.whl
+traitlets==4.3.3
+traits==6.1.1
+traitsui==7.0.1
+typed-ast @ file:///home/kathy/.cache/pypoetry/artifacts/22/8f/7a/cf5a1c21138a7a922a3e63f3112416e3337c2cc073c152a613f7bcd43a/typed_ast-1.4.1-cp36-cp36m-manylinux1_x86_64.whl
+typeguard==2.10.0
+typing-extensions==3.7.4.3
+uritemplate==3.0.1
+urllib3==1.25.10
+virtualenv @ file:///home/kathy/.cache/pypoetry/artifacts/5f/b6/d3/19dc9f19c3fe1db5080de5d74cc158b0866da71e8d4737fc0162efa434/virtualenv-20.0.34-py2.py3-none-any.whl
+visdom==0.1.8.9
+vtk==9.0.1
+wandb==0.10.7
+watchdog==0.10.3
+wcwidth==0.2.5
+webencodings==0.5.1
+websocket-client==0.57.0
+Werkzeug==1.0.1
+widgetsnbextension @ file:///home/kathy/.cache/pypoetry/artifacts/bd/d6/b2/92b2c3f70c898cebad35ae5bd4acf2dc713e0ca56b88d1b55891a8438c/widgetsnbextension-3.5.1-py2.py3-none-any.whl
+wrapt==1.12.1
+yacs==0.1.8
+yarl==1.6.0
+youtube-dl==2020.9.20
+zipp==3.3.0
