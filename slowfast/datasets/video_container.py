@@ -2,6 +2,7 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
 
 import av
+import ffmpeg
 
 
 def get_video_container(path_to_vid, multi_thread_decode=False, backend="pyav"):
@@ -20,11 +21,16 @@ def get_video_container(path_to_vid, multi_thread_decode=False, backend="pyav"):
             container = fp.read()
         return container
     elif backend == "pyav":
-        container = av.open(path_to_vid)
-        # do stuff
-        if multi_thread_decode:
-            # Enable multiple threads for decoding.
-            container.streams.video[0].thread_type = "AUTO"
+        print("TEST1")
+        container = ffmpeg.input(path_to_vid, '-pixel_format yuv422p16le', '-video_size 1280x720')
+
+        # container = av.open(path_to_vid, 'rb')
+        print("TEST2")
+
+        # # do stuff
+        # if multi_thread_decode:
+        #     # Enable multiple threads for decoding.
+        #     container.streams.video[0].thread_type = "AUTO"
         return container
     else:
         raise NotImplementedError("Unknown backend {}".format(backend))

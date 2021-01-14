@@ -82,26 +82,34 @@ def pyav_decode_stream(
         result (list): list of frames decoded.
         max_pts (int): max Presentation TimeStamp of the video sequence.
     """
-    # Seeking in the stream is imprecise. Thus, seek to an ealier PTS by a
+     # Seeking in the stream is imprecise. Thus, seek to an ealier PTS by a
     # margin pts.
     margin = 1024
     seek_offset = max(start_pts - margin, 0)
 
-    container.seek(seek_offset, any_frame=False, backward=True, stream=stream)
-    frames = {}
-    buffer_count = 0
-    max_pts = 0
-    for frame in container.decode(**stream_name):
-        max_pts = max(max_pts, frame.pts)
-        if frame.pts < start_pts:
-            continue
-        if frame.pts <= end_pts:
-            frames[frame.pts] = frame
-        else:
-            buffer_count += 1
-            frames[frame.pts] = frame
-            if buffer_count >= buffer_size:
-                break
+    # container.seek(seek_offset, any_frame=False, backward=True, stream=stream)
+    # original_codec_ctx = container.streams.video[0].codec_context
+    # print("TESTTESTTEST")
+    # # codec_ctx = av.codec.CodecContext.create(original_codec_ctx.name, 'r')
+    # frames = {}
+    # buffer_count = 0
+    # max_pts = 0
+    # for frame in original_codec_ctx.decode(**stream_name):
+    #     max_pts = max(max_pts, frame.pts)
+    #     if frame.pts < start_pts:
+    #         continue
+    #     if frame.pts <= end_pts:
+    #         frames[frame.pts] = frame
+    #     else:
+    #         buffer_count += 1
+    #         frames[frame.pts] = frame
+    #         if buffer_count >= buffer_size:
+    #             break
+    frames, _ = (
+        container
+        .output('pipe:', format='rawvideo', pix_fmt='rgb24')
+        .run(capture_stdout=True)
+    )
     result = [frames[pts] for pts in sorted(frames)]
     return result, max_pts
 
@@ -244,44 +252,52 @@ def pyav_decode(
         fps (float): the number of frames per second of the video.
         decode_all_video (bool): If True, the entire video was decoded.
     """
-    # Try to fetch the decoding information from the video head. Some of the
+     # Try to fetch the decoding information from the video head. Some of the
     # videos does not support fetching the decoding information, for that case
     # it will get None duration.
-    fps = float(container.streams.video[0].average_rate)
-    frames_length = container.streams.video[0].frames
-    duration = container.streams.video[0].duration
+    # fps = float(container.streams.video[0].average_rate)
+    # frames_length = container.streams.video[0].frames
+    # duration = container.streams.video[0].duration
 
-    if duration is None:
-        # If failed to fetch the decoding information, decode the entire video.
-        decode_all_video = True
-        video_start_pts, video_end_pts = 0, math.inf
-    else:
-        # Perform selective decoding.
-        decode_all_video = False
-        start_idx, end_idx = get_start_end_idx(
-            frames_length,
-            sampling_rate * num_frames / target_fps * fps,
-            clip_idx,
-            num_clips,
-        )
-        timebase = duration / frames_length
-        video_start_pts = int(start_idx * timebase)
-        video_end_pts = int(end_idx * timebase)
+    # if duration is None:
+    #     # If failed to fetch the decoding information, decode the entire video.
+    #     decode_all_video = True
+    #     video_start_pts, video_end_pts = 0, math.inf
+    # else:
+    #     # Perform selective decoding.
+    #     decode_all_video = False
+    #     start_idx, end_idx = get_start_end_idx(
+    #         frames_length,
+    #         sampling_rate * num_frames / target_fps * fps,
+    #         clip_idx,
+    #         num_clips,
+    #     )
+    #     timebase = duration / frames_length
+    #     video_start_pts = int(start_idx * timebase)
+    #     video_end_pts = int(end_idx * timebase)
 
-    frames = None
-    # If video stream was found, fetch video frames from the video.
-    if container.streams.video:
-        video_frames, max_pts = pyav_decode_stream(
-            container,
-            video_start_pts,
-            video_end_pts,
-            container.streams.video[0],
-            {"video": 0},
-        )
-        container.close()
+    # frames = None
+    # # If video stream was found, fetch video frames from the video.
+    # if container.streams.video:
+    video_start_pts, video_end_pts = 0, math.inf
+    decode_all_video = True
+    fps = 24
+    video_frames, max_pts = pyav_decode_stream(
+        container,
+        video_start_pts,
+        video_end_pts,
+        container,
+        {"video": 0},
+    )
+    # container.close()
 
-        frames = [frame.to_rgb().to_ndarray() for frame in video_frames]
-        frames = torch.as_tensor(np.stack(frames))
+    # frames = [frame.to_rgb().to_ndarray() for frame in video_frames]
+    frames = (
+        np
+        .frombuffer(video_frames, np.uint16)
+        .reshape([-1, 1280, 720, 3])
+    )
+    frames = torch.as_tensor(np.stack(frames))
     return frames, fps, decode_all_video
 
 
