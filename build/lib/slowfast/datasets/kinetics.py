@@ -288,7 +288,8 @@ class Kinetics(torch.utils.data.Dataset):
                 )
 
                 frames = torch.stack(frame_stack, dim=0) # stack in channels dim
-                      
+                print('SHAPE IS: ')
+                print(frames.shape)      
             else:
                 # stack 3 spatial crop and 1 downscaled center crop             
                 frame_stack = []
@@ -301,6 +302,7 @@ class Kinetics(torch.utils.data.Dataset):
                         crop_size=crop_size,
                         random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
                         inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                        downscale=False,
                     )
 
                 frame_stack.append(
@@ -316,7 +318,8 @@ class Kinetics(torch.utils.data.Dataset):
                 )
 
                 frames = torch.stack(frame_stack, dim=0) # stack in channels dim
-                    
+                print('SHAPE IS: ')
+                print(frames.shape)
 
             label = self._labels[index]
             frames = utils.pack_pathway_output(self.cfg, frames)

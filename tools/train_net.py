@@ -43,10 +43,11 @@ def train_epoch(
             to writer Tensorboard log.
     """
     # Enable train mode.
+    print("RUNNING TRAIN_NET")
     model.train()
     train_meter.iter_tic()
     data_size = len(train_loader)
-
+    print("TESTESTESTETSETSET")
     for cur_iter, (inputs, labels, _, meta) in enumerate(train_loader):
         # Transfer the data to the current GPU device.
         if cfg.NUM_GPUS:
