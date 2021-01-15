@@ -269,13 +269,13 @@ class Kinetics(torch.utils.data.Dataset):
             # )
 
             if self.mode not in ["test"]:
-                # stack 3 random crops and 1 downscaled full frame
+                # stack 3 deterministic crops and 1 downscaled full frame
                 frame_stack = []
-                for i in range(3):
+                for idx in range(3):
                     frame_stack.append(
                         utils.spatial_sampling(
                             frames,
-                            spatial_idx=spatial_sample_index,
+                            spatial_idx=idx,
                             min_scale=min_scale,
                             max_scale=max_scale,
                             crop_size=crop_size,
@@ -317,7 +317,7 @@ class Kinetics(torch.utils.data.Dataset):
                 frame_stack.append(
                     utils.spatial_sampling(
                         frames,
-                        spatial_idx=0, #(maybe should be 1 for center?? change later)
+                        spatial_idx=1, #(maybe should be 1 for center?? change later)
                         min_scale=min_scale,
                         max_scale=max_scale,
                         crop_size=crop_size,

@@ -176,7 +176,7 @@ def uniform_crop(images, size, spatial_idx, boxes=None):
             y_offset = height - size
     else:
         if spatial_idx == 0:
-            x_offset = 0
+            y_offset = 0 # take top instead of left
         elif spatial_idx == 2:
             x_offset = width - size
     cropped = images[
