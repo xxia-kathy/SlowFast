@@ -258,15 +258,65 @@ class Kinetics(torch.utils.data.Dataset):
             # T H W C -> C T H W.
             frames = frames.permute(3, 0, 1, 2)
             # Perform data augmentation.
-            frames = utils.spatial_sampling(
-                frames,
-                spatial_idx=spatial_sample_index,
-                min_scale=min_scale,
-                max_scale=max_scale,
-                crop_size=crop_size,
-                random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-            )
+            if self.mode not in ["test"]:
+                # stack 3 random crops and 1 downscaled full frame
+                frame_stack = []
+                for i in range(3):
+                    frame_stack.append(
+                        utils.spatial_sampling(
+                            frames,
+                            spatial_idx=spatial_sample_index,
+                            min_scale=min_scale,
+                            max_scale=max_scale,
+                            crop_size=crop_size,
+                            random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                            inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                            downscale=False,
+                        )
+                    )
+
+                frame_stack.append(
+                    utils.spatial_sampling(
+                        frames,
+                        spatial_idx=spatial_sample_index,
+                        min_scale=min_scale,
+                        max_scale=max_scale,
+                        crop_size=crop_size,
+                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                    )
+                )
+
+                frames = torch.stack(frame_stack, dim=0) # stack in channels dim
+                      
+            else:
+                # stack 3 spatial crop and 1 downscaled center crop             
+                frame_stack = []
+                for idx in range(3):
+                    utils.spatial_sampling(
+                        frames,
+                        spatial_idx=idx,
+                        min_scale=min_scale,
+                        max_scale=max_scale,
+                        crop_size=crop_size,
+                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                    )
+
+                frame_stack.append(
+                    utils.spatial_sampling(
+                        frames,
+                        spatial_idx=0,
+                        min_scale=min_scale,
+                        max_scale=max_scale,
+                        crop_size=crop_size,
+                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                    )
+                )
+
+                frames = torch.stack(frame_stack, dim=0) # stack in channels dim
+                    
 
             label = self._labels[index]
             frames = utils.pack_pathway_output(self.cfg, frames)

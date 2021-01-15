@@ -114,6 +114,7 @@ def spatial_sampling(
     crop_size=224,
     random_horizontal_flip=True,
     inverse_uniform_sampling=False,
+    downscale=True,
 ):
     """
     Perform spatial sampling on the given video frames. If spatial_idx is
@@ -139,13 +140,15 @@ def spatial_sampling(
         frames (tensor): spatially sampled frames.
     """
     assert spatial_idx in [-1, 0, 1, 2]
+         
     if spatial_idx == -1:
-        frames, _ = transform.random_short_side_scale_jitter(
-            images=frames,
-            min_size=min_scale,
-            max_size=max_scale,
-            inverse_uniform_sampling=inverse_uniform_sampling,
-        )
+        if downscale:
+            frames, _ = transform.random_short_side_scale_jitter(
+                images=frames,
+                min_size=min_scale,
+                max_size=max_scale,
+                inverse_uniform_sampling=inverse_uniform_sampling,
+            )
         frames, _ = transform.random_crop(frames, crop_size)
         if random_horizontal_flip:
             frames, _ = transform.horizontal_flip(0.5, frames)
@@ -153,9 +156,10 @@ def spatial_sampling(
         # The testing is deterministic and no jitter should be performed.
         # min_scale, max_scale, and crop_size are expect to be the same.
         assert len({min_scale, max_scale, crop_size}) == 1
-        frames, _ = transform.random_short_side_scale_jitter(
-            frames, min_scale, max_scale
-        )
+        if downscale:
+            frames, _ = transform.random_short_side_scale_jitter(
+                frames, min_scale, max_scale
+            )
         frames, _ = transform.uniform_crop(frames, crop_size, spatial_idx)
     return frames
 
