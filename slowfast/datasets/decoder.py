@@ -281,7 +281,7 @@ def pyav_decode(
     # if container.streams.video:
     video_start_pts, video_end_pts = 0, math.inf
     decode_all_video = True
-    fps = 24
+    fps = 25
     video_frames, max_pts = pyav_decode_stream(
         container,
         video_start_pts,

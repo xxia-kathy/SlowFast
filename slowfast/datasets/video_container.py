@@ -22,7 +22,7 @@ def get_video_container(path_to_vid, multi_thread_decode=False, backend="pyav"):
         return container
     elif backend == "pyav":
         print("TEST1")
-        container = ffmpeg.input(path_to_vid, '-pixel_format yuv422p16le', '-video_size 1280x720')
+        container = ffmpeg.input(path_to_vid, pix_fmt='yuv422p16le', video_size='1280x720')
 
         # container = av.open(path_to_vid, 'rb')
         print("TEST2")
