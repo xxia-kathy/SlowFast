@@ -276,8 +276,8 @@ class Kinetics(torch.utils.data.Dataset):
                         utils.spatial_sampling(
                             frames,
                             spatial_idx=idx,
-                            min_scale=min_scale,
-                            max_scale=max_scale,
+                            min_scale=crop_size,
+                            max_scale=crop_size,
                             crop_size=crop_size,
                             random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
                             inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
