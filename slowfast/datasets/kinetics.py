@@ -303,21 +303,23 @@ class Kinetics(torch.utils.data.Dataset):
                 # stack 3 spatial crop and 1 downscaled center crop             
                 frame_stack = []
                 for idx in range(3):
-                    utils.spatial_sampling(
-                        frames,
-                        spatial_idx=idx,
-                        min_scale=min_scale,
-                        max_scale=max_scale,
-                        crop_size=crop_size,
-                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-                        downscale=False,
+                    frame_stack.append(
+                        utils.spatial_sampling(
+                            frames,
+                            spatial_idx=idx,
+                            min_scale=min_scale,
+                            max_scale=max_scale,
+                            crop_size=crop_size,
+                            random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                            inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+                            downscale=False,
+                        )
                     )
 
                 frame_stack.append(
                     utils.spatial_sampling(
                         frames,
-                        spatial_idx=0, #(maybe should be 1 for center?? change later)
+                        spatial_idx=1, #(maybe should be 1 for center?? change later)
                         min_scale=min_scale,
                         max_scale=max_scale,
                         crop_size=crop_size,
@@ -327,7 +329,6 @@ class Kinetics(torch.utils.data.Dataset):
                 )
 
                 frames = torch.cat(frame_stack, dim=0) # stack in channels dim
-
             label = self._labels[index]
             frames = utils.pack_pathway_output(self.cfg, frames)
             return frames, label, index, {}
