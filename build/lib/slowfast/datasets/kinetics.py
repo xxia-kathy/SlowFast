@@ -29,7 +29,7 @@ class Kinetics(torch.utils.data.Dataset):
     bottom crop if the height is larger than the width.
     """
 
-    def __init__(self, cfg, mode, num_retries=10):
+    def __init__(self, cfg, mode, num_retries=10, downscaled=True):
         """
         Construct the Kinetics video loader with a given csv file. The format of
         the csv file is:
@@ -56,7 +56,7 @@ class Kinetics(torch.utils.data.Dataset):
         ], "Split '{}' not supported for Kinetics".format(mode)
         self.mode = mode
         self.cfg = cfg
-
+        self.downscaled = downscaled
         self._video_meta = {}
         self._num_retries = num_retries
         # For training or validation mode, one single clip is sampled from every
@@ -72,6 +72,7 @@ class Kinetics(torch.utils.data.Dataset):
 
         logger.info("Constructing Kinetics {}...".format(mode))
         self._construct_loader()
+
 
     def _construct_loader(self):
         """

@@ -22,7 +22,7 @@ logger = logging.get_logger(__name__)
 
 
 @torch.no_grad()
-def perform_test(test_loader, model, test_meter, cfg, writer=None):
+def perform_test(test_loader, model_downscaled, model_full_res, test_meter, cfg, writer=None):
     """
     For classification:
     Perform mutli-view testing that uniformly samples N clips from a video along
@@ -43,17 +43,25 @@ def perform_test(test_loader, model, test_meter, cfg, writer=None):
             to writer Tensorboard log.
     """
     # Enable eval mode.
-    model.eval()
+    model_downscaled.eval()
+    model_full_res.eval()
+
     test_meter.iter_tic()
 
-    for cur_iter, (inputs, labels, video_idx, meta) in enumerate(test_loader):
+    for cur_iter, (inputs_downscaled, inputs_fr, labels, video_idx, meta) in enumerate(test_loader):
         if cfg.NUM_GPUS:
             # Transfer the data to the current GPU device.
-            if isinstance(inputs, (list,)):
-                for i in range(len(inputs)):
-                    inputs[i] = inputs[i].cuda(non_blocking=True)
+            if isinstance(inputs_downscaled, (list,)):
+                for i in range(len(inputs_downscaled)):
+                    inputs_downscaled[i] = inputs_downscaled[i].cuda(non_blocking=True)
             else:
-                inputs = inputs.cuda(non_blocking=True)
+                inputs_downscaled = inputs_downscaled.cuda(non_blocking=True)
+
+            if isinstance(inputs_fr, (list,)):
+                for i in range(len(inputs_fr)):
+                    inputs_fr[i] = inputs_fr[i].cuda(non_blocking=True)
+            else:
+                inputs_fr = inputs_fr.cuda(non_blocking=True)
 
             # Transfer the data to the current GPU device.
             labels = labels.cuda()
@@ -68,7 +76,7 @@ def perform_test(test_loader, model, test_meter, cfg, writer=None):
 
         if cfg.DETECTION.ENABLE:
             # Compute the predictions.
-            preds = model(inputs, meta["boxes"])
+            preds = model_downscaled(inputs_downscaled, meta["boxes"])
             ori_boxes = meta["ori_boxes"]
             metadata = meta["metadata"]
 
@@ -90,9 +98,13 @@ def perform_test(test_loader, model, test_meter, cfg, writer=None):
             test_meter.update_stats(preds, ori_boxes, metadata)
             test_meter.log_iter_stats(None, cur_iter)
         else:
-            # Perform the forward pass.
-            preds = model(inputs)
+            # Perform the forward pass (with downscaled model).
+            preds_downscaled = model_downscaled(inputs_downscaled)
+            # Perform the forward pass (with full resolution model).
+            preds_fr = model_full_res(inputs_fr)
 
+            preds = torch.add(preds_downscaled, preds_fr)
+            preds = torch.div(preds, 2)
             # Gather all the predictions across all the devices to perform ensemble.
             if cfg.NUM_GPUS > 1:
                 preds, labels, video_idx = du.all_gather(
@@ -157,11 +169,16 @@ def test(cfg):
     logger.info(cfg)
 
     # Build the video model and print model statistics.
-    model = build_model(cfg)
-    if du.is_master_proc() and cfg.LOG_MODEL_INFO:
-        misc.log_model_info(model, cfg, use_train_input=False)
+    model_downscaled = build_model(cfg)
+    model_fr = build_model(cfg)
 
-    cu.load_test_checkpoint(cfg, model)
+    if du.is_master_proc() and cfg.LOG_MODEL_INFO:
+        misc.log_model_info(model_downscaled, cfg, use_train_input=False)
+
+    cu.load_test_checkpoint(cfg, model_downscaled)
+    # hard code for now
+    cfg.TEST.CHECKPOINT_FILE_PATH = '/home/kathy/mnt/data/checkpoint_files/X3D_large_data_no_scale/checkpoints/checkpoint_epoch_00310.pyth'
+    cu.load_test_checkpoint(cfg, model_fr)
 
     # Create video testing loaders.
     test_loader = loader.construct_loader(cfg, "test")
@@ -196,6 +213,6 @@ def test(cfg):
         writer = None
 
     # # Perform multi-view test on the entire dataset.
-    test_meter = perform_test(test_loader, model, test_meter, cfg, writer)
+    test_meter = perform_test(test_loader, model_downscaled, model_fr, test_meter, cfg, writer)
     if writer is not None:
         writer.close()

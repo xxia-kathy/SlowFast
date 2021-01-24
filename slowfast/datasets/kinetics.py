@@ -56,7 +56,6 @@ class Kinetics(torch.utils.data.Dataset):
         ], "Split '{}' not supported for Kinetics".format(mode)
         self.mode = mode
         self.cfg = cfg
-
         self._video_meta = {}
         self._num_retries = num_retries
         # For training or validation mode, one single clip is sampled from every
@@ -72,6 +71,7 @@ class Kinetics(torch.utils.data.Dataset):
 
         logger.info("Constructing Kinetics {}...".format(mode))
         self._construct_loader()
+
 
     def _construct_loader(self):
         """
@@ -258,80 +258,32 @@ class Kinetics(torch.utils.data.Dataset):
             # T H W C -> C T H W.
             frames = frames.permute(3, 0, 1, 2)
             # Perform data augmentation.
-            # frames = utils.spatial_sampling(
-            #     frames,
-            #     spatial_idx=spatial_sample_index,
-            #     min_scale=min_scale,
-            #     max_scale=max_scale,
-            #     crop_size=crop_size,
-            #     random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-            #     inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-            # )
+            
+            frames_downscaled = utils.spatial_sampling(
+                frames,
+                spatial_idx=spatial_sample_index,
+                min_scale=min_scale,
+                max_scale=max_scale,
+                crop_size=crop_size,
+                random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+            )
 
-            if self.mode not in ["test"]:
-                # stack 3 random crops and 1 downscaled full frame
-                frame_stack = []
-                for i in range(3):
-                    frame_stack.append(
-                        utils.spatial_sampling(
-                            frames,
-                            spatial_idx=spatial_sample_index,
-                            min_scale=min_scale,
-                            max_scale=max_scale,
-                            crop_size=crop_size,
-                            random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                            inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-                            downscale=False,
-                        )
-                    )
+            frames_fr = utils.spatial_sampling(
+                frames,
+                spatial_idx=spatial_sample_index,
+                min_scale=min_scale,
+                max_scale=max_scale,
+                crop_size=crop_size,
+                random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
+                inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
+            )
 
-                frame_stack.append(
-                    utils.spatial_sampling(
-                        frames,
-                        spatial_idx=spatial_sample_index,
-                        min_scale=min_scale,
-                        max_scale=max_scale,
-                        crop_size=crop_size,
-                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-                    )
-                )
-
-                frames = torch.cat(frame_stack, dim=0) # stack in channels dim
-                
-            else:
-                # stack 3 spatial crop and 1 downscaled center crop             
-                frame_stack = []
-                for idx in range(3):
-                    frame_stack.append(
-                        utils.spatial_sampling(
-                            frames,
-                            spatial_idx=idx,
-                            min_scale=min_scale,
-                            max_scale=max_scale,
-                            crop_size=crop_size,
-                            random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                            inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-                            downscale=False,
-                        )
-                    )
-
-                frame_stack.append(
-                    utils.spatial_sampling(
-                        frames,
-                        spatial_idx=1, #(maybe should be 1 for center?? change later)
-                        min_scale=min_scale,
-                        max_scale=max_scale,
-                        crop_size=crop_size,
-                        random_horizontal_flip=self.cfg.DATA.RANDOM_FLIP,
-                        inverse_uniform_sampling=self.cfg.DATA.INV_UNIFORM_SAMPLE,
-                    )
-                )
-
-                frames = torch.cat(frame_stack, dim=0) # stack in channels dim
             label = self._labels[index]
-            frames = utils.pack_pathway_output(self.cfg, frames)
-            return frames, label, index, {}
+            frames_downscaled = utils.pack_pathway_output(self.cfg, frames_downscaled)
+            frames_fr = utils.pack_pathway_output(self.cfg, frames_fr)
+
+            return frames_downscaled, frames_fr, label, index, {}
         else:
             raise RuntimeError(
                 "Failed to fetch video after {} retries.".format(
