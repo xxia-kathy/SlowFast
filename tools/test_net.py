@@ -103,8 +103,7 @@ def perform_test(test_loader, model_downscaled, model_full_res, test_meter, cfg,
             # Perform the forward pass (with full resolution model).
             preds_fr = model_full_res(inputs_fr)
 
-            preds = torch.add(preds_downscaled, preds_fr)
-            preds = torch.div(preds, 2)
+            preds = torch.add(torch.mul(preds_downscaled, 0.25), torch.mul(preds_fr, 0.75))
             # Gather all the predictions across all the devices to perform ensemble.
             if cfg.NUM_GPUS > 1:
                 preds, labels, video_idx = du.all_gather(
