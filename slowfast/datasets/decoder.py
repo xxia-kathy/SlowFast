@@ -56,10 +56,8 @@ def get_start_end_idx(video_size, clip_size, clip_idx, num_clips):
     else:
         # Uniformly sample the clip with the given index.
         # alternate around middle of clip so that first clip starts from the middle
-        if clip_idx % 2 == 0:
-            start_idx = (middle + (delta * clip_idx / 2)) / num_clips
-        else:
-            start_idx = (middle - (delta * (clip_idx - 1) / 2)) / num_clips
+        start_idx = delta * clip_idx / num_clips
+
     end_idx = start_idx + clip_size - 1
     return start_idx, end_idx
 
