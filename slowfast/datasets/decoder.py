@@ -8,7 +8,7 @@ import torch
 import torchvision.io as io
 
 
-def temporal_sampling(frames, start_idx, end_idx, num_samples):
+def temporal_sampling(frames, start_idx, end_idx, num_samples, offset):
     """
     Given the start and end frame index, sample num_samples frames between
     the start and end with equal interval.
@@ -22,7 +22,7 @@ def temporal_sampling(frames, start_idx, end_idx, num_samples):
         frames (tersor): a tensor of temporal sampled video frames, dimension is
             `num clip frames` x `channel` x `height` x `width`.
     """
-    index = torch.linspace(start_idx, end_idx, num_samples)
+    index = torch.linspace(start_idx + offset, end_idx + offset, num_samples)
     index = torch.clamp(index, 0, frames.shape[0] - 1).long()
     frames = torch.index_select(frames, 0, index)
     return frames
@@ -54,12 +54,14 @@ def get_start_end_idx(video_size, clip_size, clip_idx, num_clips):
         # Random temporal sampling.
         start_idx = random.uniform(0, delta)
     else:
-        # Uniformly sample the clip with the given index.
-        # alternate around middle of clip so that first clip starts from the middle
-        if clip_idx % 2 == 0:
-            start_idx = (middle + (delta * clip_idx / 2)) / num_clips
-        else:
-            start_idx = (middle - (delta * (clip_idx - 1) / 2)) / num_clips
+        # # Uniformly sample the clip with the given index.
+        # # alternate around middle of clip so that first clip starts from the middle
+        # if clip_idx % 2 == 0:
+        #     start_idx = (middle + (delta * clip_idx / 2)) / num_clips
+        # else:
+        #     start_idx = (middle - (delta * (clip_idx - 1) / 2)) / num_clips
+        start_idx = delta * clip_idx / num_clips
+
     end_idx = start_idx + clip_size - 1
     return start_idx, end_idx
 
@@ -329,7 +331,7 @@ def decode(
                 container,
                 sampling_rate,
                 num_frames,
-                clip_idx,
+                clip_idx % num_clips,
                 num_clips,
                 target_fps,
             )
@@ -338,7 +340,7 @@ def decode(
                 container,
                 sampling_rate,
                 num_frames,
-                clip_idx,
+                clip_idx % num_clips,
                 video_meta,
                 num_clips,
                 target_fps,
@@ -365,5 +367,12 @@ def decode(
         num_clips if decode_all_video else 1,
     )
     # Perform temporal sampling from the decoded video.
-    frames = temporal_sampling(frames, start_idx, end_idx, num_frames)
+    if (clip_idx == -1):
+        frames = temporal_sampling(frames, start_idx, end_idx, num_frames, 0)
+    else:
+        if (end_idx + (sampling_rate - 1) <= frames.shape[0] - 1):
+            frames = temporal_sampling(frames, start_idx, end_idx, num_frames, clip_idx % sampling_rate)
+        else:
+            frames = temporal_sampling(frames, start_idx, end_idx, num_frames, 0)
+
     return frames

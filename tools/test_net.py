@@ -190,14 +190,15 @@ def test(cfg):
     else:
         assert (
             len(test_loader.dataset)
-            % (cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS)
+            % (cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS * cfg.DATA.SAMPLING_RATE)
             == 0
         )
         # Create meters for multi-view testing.
+        print(cfg.DATA.SAMPLING_RATE)
         test_meter = TestMeter(
             len(test_loader.dataset)
-            // (cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS),
-            cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS,
+            // (cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS * cfg.DATA.SAMPLING_RATE),
+            cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS * cfg.DATA.SAMPLING_RATE,
             cfg.MODEL.NUM_CLASSES,
             len(test_loader),
             cfg.DATA.MULTI_LABEL,
