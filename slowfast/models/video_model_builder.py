@@ -688,7 +688,8 @@ class X3D(nn.Module):
 
         w_mul = cfg.X3D.WIDTH_FACTOR
         d_mul = cfg.X3D.DEPTH_FACTOR
-        dim_res1 = self._round_width(self.dim_c1, w_mul)
+        # increase first layer channel by factor of 2
+        dim_res1 = self._round_width(self.dim_c1, w_mul) * 2
 
         temp_kernel = _TEMPORAL_KERNEL_BASIS[cfg.MODEL.ARCH]
 
