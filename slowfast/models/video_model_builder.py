@@ -707,7 +707,8 @@ class X3D(nn.Module):
         dim_in = dim_res1
         for stage, block in enumerate(self.block_basis):
             dim_out = self._round_width(block[1], w_mul)
-            dim_inner = int(cfg.X3D.BOTTLENECK_FACTOR * dim_out)
+            # 2x the dim of the bottleneck
+            dim_inner = int(cfg.X3D.BOTTLENECK_FACTOR * dim_out) * 2
 
             n_rep = self._round_repeats(block[0], d_mul)
             prefix = "s{}".format(
