@@ -53,8 +53,12 @@ def random_short_side_scale_jitter(
             boxes = boxes * float(new_width) / width
 
     return (
-        # no downscale
-        images,
+        torch.nn.functional.interpolate(
+            images,
+            size=(new_height, new_width),
+            mode="bilinear",
+            align_corners=False,
+        ),
         boxes,
     )
 
