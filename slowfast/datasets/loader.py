@@ -62,7 +62,6 @@ def construct_loader(cfg, split, is_precise_bn=False):
         split (str): the split of the data loader. Options include `train`,
             `val`, and `test`.
     """
-    print("TESTETSTTSET")
     assert split in ["train", "val", "test"]
     if split in ["train"]:
         dataset_name = cfg.TRAIN.DATASET
@@ -98,7 +97,6 @@ def construct_loader(cfg, split, is_precise_bn=False):
             worker_init_fn=utils.loader_worker_init_fn(dataset),
         )
     else:
-        print('TEST0')
         # Create a sampler for multi-process training
         sampler = utils.create_sampler(dataset, shuffle, cfg)
         # Create a loader

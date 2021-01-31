@@ -16,11 +16,9 @@ def main():
     Main function to spawn the train and test process.
     """
     args = parse_args()
-    print("LOADING CONFIG")
     cfg = load_config(args)
 
     # Perform training.
-    print("LAUNCHING JOB")
     if cfg.TRAIN.ENABLE:
         launch_job(cfg=cfg, init_method=args.init_method, func=train)
 
