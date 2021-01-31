@@ -415,6 +415,7 @@ def train(cfg):
         writer = None
 
     # Perform the training loop.
+    logger.info("Training model (original) with downscaled inputs")
     logger.info("Start epoch: {}".format(start_epoch + 1))
 
     for cur_epoch in range(start_epoch, cfg.SOLVER.MAX_EPOCH):
@@ -480,7 +481,4 @@ def train(cfg):
             cu.save_checkpoint(cfg.OUTPUT_DIR, model, optimizer, cur_epoch, cfg)
         # Evaluate the model on validation set.
         if is_eval_epoch:
-            eval_epoch(val_loader, model, val_meter, cur_epoch, cfg, writer)
-
-    if writer is not None:
-        writer.close()
+            eval_epoch(val_loader, model, val_meter, cur_epo
