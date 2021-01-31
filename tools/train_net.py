@@ -415,6 +415,7 @@ def train(cfg):
         writer = None
 
     # Perform the training loop.
+    logger.info("Training model with cropped full resolution inputs")
     logger.info("Start epoch: {}".format(start_epoch + 1))
 
     for cur_epoch in range(start_epoch, cfg.SOLVER.MAX_EPOCH):
