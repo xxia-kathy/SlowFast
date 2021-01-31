@@ -47,7 +47,6 @@ def train_epoch(
     model.train()
     train_meter.iter_tic()
     data_size = len(train_loader)
-    print("TESTESTESTETSETSET")
     for cur_iter, (inputs, labels, _, meta) in enumerate(train_loader):
         # Transfer the data to the current GPU device.
         if cfg.NUM_GPUS:
@@ -416,6 +415,7 @@ def train(cfg):
         writer = None
 
     # Perform the training loop.
+    logger.info("Training model with stacked inputs (3 cropped full resolution and 1 downscaled) with the output dimension of the stem increased by a factor of 2")
     logger.info("Start epoch: {}".format(start_epoch + 1))
 
     for cur_epoch in range(start_epoch, cfg.SOLVER.MAX_EPOCH):
