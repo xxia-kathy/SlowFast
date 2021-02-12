@@ -67,7 +67,7 @@ class Kinetics(torch.utils.data.Dataset):
             self._num_clips = 1
         elif self.mode in ["test"]:
             self._num_clips = (
-                cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS
+                cfg.TEST.NUM_ENSEMBLE_VIEWS * cfg.TEST.NUM_SPATIAL_CROPS * cfg.DATA.SAMPLING_RATE
             )
 
         logger.info("Constructing Kinetics {}...".format(mode))
@@ -191,6 +191,7 @@ class Kinetics(torch.utils.data.Dataset):
             self.cfg.MULTIGRID.LONG_CYCLE_SAMPLING_RATE,
             self.cfg.DATA.SAMPLING_RATE,
         )
+        sampling_rate = self.cfg.DATA.SAMPLING_RATE
         # Try to decode and sample a clip from a video. If the video can not be
         # decoded, repeatly find a random video replacement that can be decoded.
         for i_try in range(self._num_retries):
