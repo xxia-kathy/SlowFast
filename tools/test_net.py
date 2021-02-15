@@ -177,7 +177,8 @@ def test(cfg):
 
     cu.load_test_checkpoint(cfg, model_downscaled)
     # hard code for now
-    cfg.TEST.CHECKPOINT_FILE_PATH = '/home/kathy/mnt/data/checkpoint_files/X3D_large_data_no_scale/checkpoints/checkpoint_epoch_00310.pyth'
+    cfg.TEST.CHECKPOINT_FILE_PATH = '/home/kathy/mnt/data/checkpoint_files/X3D_large_data_no_scale_high_q/checkpoints/checkpoint_epoch_00290.pyth'
+    cfg.MODEL.NUM_CLASSES=9
     cu.load_test_checkpoint(cfg, model_fr)
 
     # Create video testing loaders.
